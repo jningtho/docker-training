@@ -5,8 +5,6 @@
 - Docker CE on Ubuntu
 
 ## Prerequisites
-### Docker CE customers
-
 ### OS requirements
 To install Docker CE, you need the 64-bit version of one of these Ubuntu versions:
 
