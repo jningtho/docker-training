@@ -52,3 +52,72 @@ uid                  Docker Release (CE deb) <docker@docker.com>
 sub   4096R/F273FCD8 2017-02-22
 
 ```
+4. Use the following command to set up the stable repository. You always need the stable repository, even if you want to install builds from the edge or test repositories as well. To add the edge or test repository, add the word edge or test (or both) after the word stable in the commands below.
+
+```
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+```
+### INSTALL DOCKER CE
+
+1. Update the apt package index.
+```
+$ sudo apt-get update
+```
+
+2. Install the latest version of Docker CE, or go to the next step to install a specific version. Any existing installation of Docker is replaced.
+```
+$ sudo apt-get install docker-ce
+```
+3. Verify that Docker CE is installed correctly by running the hello-world image.
+```
+$ sudo docker run hello-world
+```
+
+This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+
+Docker CE is installed and running. The docker group is created but no users are added to it. You need to use sudo to run Docker commands. Continue to [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/) to allow non-privileged users to run Docker commands and for other optional configuration steps.
+
+## Post-installation steps for Linux
+
+### Manage Docker as a non-root user
+
+The docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo. The docker daemon always runs as the root user.
+
+If you don’t want to use sudo when you use the docker command, create a Unix group called docker and add users to it. When the docker daemon starts, it makes the ownership of the Unix socket read/writable by the docker group.
+
+To create the docker group and add your user:
+
+1. Create the docker group.
+```
+$ sudo groupadd docker
+```
+2. Add your user to the docker group.
+```
+$ sudo usermod -aG docker $USER
+```
+3. Log out and log back in so that your group membership is re-evaluated.
+
+        If testing on a virtual machine, it may be necessary to restart the virtual machine for changes to take effect. On a desktop Linux environment such as X Windows, log out of your session completely and then log back in.
+
+4. Verify that you can run docker commands without sudo
+```
+$ docker run hello-world
+```
+This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+
+If you initially ran Docker CLI commands using sudo before adding your user to the docker group, you may see the following error, which indicates that your ~/.docker/ directory was created with incorrect permissions due to the sudo commands.
+
+WARNING!
+```
+WARNING: Error loading config file: /home/user/.docker/config.json -
+stat /home/user/.docker/config.json: permission denied
+```
+To fix this problem, either remove the ~/.docker/ directory (it is recreated automatically, but any custom settings are lost), or change its ownership and permissions using the following commands:
+
+```
+$ sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+$ sudo chmod g+rwx "/home/$USER/.docker" -R
+```
