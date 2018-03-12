@@ -2,13 +2,16 @@
 
 
 ## 1. Docker Setup and Configuration
+
+### Please refer to the links for specific OS
 - Docker for [MAC](https://docs.docker.com/docker-for-mac/install/)
 - Docker for [Windows](https://docs.docker.com/docker-for-windows/install/)
 - Docker for [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
 - Docker for [Centos](https://docs.docker.com/install/linux/docker-ce/centos/)
-- Docker CE on Ubuntu
 
-## Prerequisites
+### Docker CE on Ubuntu
+
+## 2. Prerequisites
 ### OS requirements
 To install Docker CE, you need the 64-bit version of one of these Ubuntu versions:
 
@@ -16,7 +19,7 @@ To install Docker CE, you need the 64-bit version of one of these Ubuntu version
 - Xenial 16.04 (LTS)
 - Trusty 14.04 (LTS)
 
-## Installation Details
+## 3. Installation Details
 [Ubuntu 16.04](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 ### Install using the repository
@@ -60,7 +63,7 @@ $ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 ```
-### INSTALL DOCKER CE
+## 4. INSTALL DOCKER CE
 
 1. Update the apt package index.
 ```
@@ -80,7 +83,7 @@ This command downloads a test image and runs it in a container. When the contain
 
 Docker CE is installed and running. The docker group is created but no users are added to it. You need to use sudo to run Docker commands. Continue to [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/) to allow non-privileged users to run Docker commands and for other optional configuration steps.
 
-## Post-installation steps for Linux
+## 5. Post-installation steps for Linux
 
 ### Manage Docker as a non-root user
 
