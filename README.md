@@ -1,6 +1,5 @@
 # Docker Training module
 
-
 ## 1. Docker Setup and Configuration
 
 ### Please refer to the links for specific OS
